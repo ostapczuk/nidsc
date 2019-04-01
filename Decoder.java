@@ -1,5 +1,5 @@
 
-public interface Decoder {
+public class Decoder {
 	
 	public static int[] repetition(int[] input, int rep) { //TYLKO DLA NJEPARŻYSTYH
 		int[] output = new int[input.length/rep];
