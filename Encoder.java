@@ -9,11 +9,7 @@ public class Encoder {
 			{0,0,0,1}
 	};
 	
-	static int HammingH[][] = { // macierz parzystosci [3][7]
-			{1,0,1,0,1,0,1},
-			{0,1,1,0,0,1,1},
-			{0,0,0,1,1,1,1}
-	};
+	
 	
 	public static int[] repetition(int[] input, int rep) { // tylko liczby nieparzyste jako liczba powtórzeń!
 		int[] output = new int[rep*input.length];
@@ -41,13 +37,14 @@ public class Encoder {
 		
 		for(int i = 0; i < bits.length; i+=4) {
 			//dzielenie na pakiety 4-bitowe z 3-bit nadmiarem
-			for(int j = 0; j < 4; j++) {
+			for(int j = 0; j < 4; j++) { // 4-bitowy wektor p
 				for(int k = 0; k < 7; k++) {
-					output[7*i/4 + k] =
-						HammingG[k][j]*bits[i + j];
+					output[7*i/4 + k] += HammingG[k][j]*bits[i + j]; // mnozenie macierzowe G*p
 				}
 			}
-						
+		}
+		for (int i = 0; i < output.length; i++) {
+			output[i] = output[i]%2;
 		}
 		
 		return output;

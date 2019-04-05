@@ -10,7 +10,7 @@ public class Nidsc {
     
     System.out.println("TEST RUN: REPETITION:"); ////////////////////////////////
     
-    Data inputdata = new Data(12); // liczba podzielna przez 4 - do kodu Hamminga(7,4)
+    Data inputdata = new Data(120); // liczba podzielna przez 4 - do kodu Hamminga(7,4)
     System.out.println("\nINPUT DATA:");
     
     for(int bit : inputdata.bits) {
@@ -38,7 +38,7 @@ public class Nidsc {
     	System.out.print(bit);
     }
     
-    System.out.println("TEST RUN: CRC:"); //////////////////////////////////////////////////////
+    System.out.println("\n\nTEST RUN: CRC:"); //////////////////////////////////////////////////////
     System.out.println("\nINPUT DATA:");
     
     for(int bit : inputdata.bits) {
