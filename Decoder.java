@@ -1,6 +1,21 @@
 
 public class Decoder {
 	
+	static int HammingH[][] = { // macierz parzystosci [3][7]
+			{1,0,1,0,1,0,1},
+			{0,1,1,0,0,1,1},
+			{0,0,0,1,1,1,1}
+	};
+	
+	/*
+	static int HammingR[][] = { // macierz dekodowania [4][7]
+			{0,0,1,0,0,0,0},
+			{0,0,0,0,1,0,0},
+			{0,0,0,0,0,1,0},
+			{0,0,0,0,0,0,1}
+	};
+	*/
+	
 	public static int[] repetition(int[] input, int rep) { //TYLKO DLA NJEPARŻYSTYH
 		int[] output = new int[input.length/rep];
 		for(int i = 0; i < output.length; i++) {
@@ -18,8 +33,29 @@ public class Decoder {
 	}
 
 	public static int[] Hamming74(int[] transferdata) {
-		// TODO Auto-generated method stub
-		return transferdata;
+		int[] output = new int[4*transferdata.length/7];
+		int [] syndrome = new int[3];
+		for(int i = 0; i < transferdata.length; i+=7) { // bierzemy 7 bitów, korygujemy i oddajemy 4
+			for(int j = 0; j < 3; j++) {
+				for (int k = 0; k < 7; k++) {
+					syndrome[j] += HammingH[j][k] * transferdata[i+k];
+				}
+			}
+			for (int j = 0; j < syndrome.length; j++) {
+				syndrome[j] = syndrome[j]%2;
+			}
+			int bitError = 4 * syndrome[2] + 2 * syndrome[1] + syndrome[0];
+			if(bitError!=0){
+				transferdata[i + bitError-1]++;
+				transferdata[i + bitError-1] = transferdata[i + bitError-1]%2;
+			}
+			output[4*i/7] = transferdata[i+2];
+			output[4*i/7+1] = transferdata[i+4];
+			output[4*i/7+2] = transferdata[i+5];
+			output[4*i/7+3] = transferdata[i+6];
+		}
+		
+		return output;
 	}
 
 }
