@@ -17,4 +17,9 @@ public class Decoder {
 		return output;
 	}
 
+	public static int[] Hamming74(int[] transferdata) {
+		// TODO Auto-generated method stub
+		return transferdata;
+	}
+
 }
