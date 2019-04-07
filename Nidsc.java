@@ -2,6 +2,7 @@ public class Nidsc {
 	
 	static int repLength = 3; 
 	static int packetLength = 10;
+	static Counter count= new Counter();
 	
   public static void main(String args[]) {
 	  Nidsc nidsc = new Nidsc();
@@ -10,7 +11,7 @@ public class Nidsc {
     
     System.out.println("TEST RUN: REPETITION:"); ////////////////////////////////
     
-    Data inputdata = new Data(10);
+    Data inputdata = new Data(120); // liczba podzielna przez 4 - do kodu Hamminga(7,4)
     System.out.println("\nINPUT DATA:");
     
     for(int bit : inputdata.bits) {
@@ -32,13 +33,15 @@ public class Nidsc {
     
     System.out.println("\nOUTPUT DATA:");
     
-    int[] outputdata = Decoder.repetition(transferdata,repLength);
+    int[] outputdata = Decoder.repetition(transferdata,repLength, count, inputdata.bits);
     
     for(int bit : outputdata) {
     	System.out.print(bit);
     }
     
-    System.out.println("TEST RUN: CRC:"); //////////////////////////////////////////////////////
+    System.out.println("\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych b³êdów: " + count.mistakes + "\nZepsutych: " + count.broken + "\nB³êdy nie wykryte: " + count.notfound);
+    
+    System.out.println("\n\nTEST RUN: CRC:"); //////////////////////////////////////////////////////
     System.out.println("\nINPUT DATA:");
     
     for(int bit : inputdata.bits) {
@@ -46,7 +49,7 @@ public class Nidsc {
     }
     
     System.out.println("\nTRANSFER DATA:");
-    transferdata = Encoder.CRC(inputdata.bits, repLength);
+    transferdata = Encoder.Hamming74(inputdata.bits);
     for(int bit : transferdata) {
     	System.out.print(bit);
     }
@@ -60,7 +63,7 @@ public class Nidsc {
     
     System.out.println("\nOUTPUT DATA:");
     
-    outputdata = Decoder.CRC(transferdata,repLength);
+    outputdata = Decoder.Hamming74(transferdata);
     
     for(int bit : outputdata) {
     	System.out.print(bit);
