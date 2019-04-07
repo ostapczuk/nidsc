@@ -38,29 +38,47 @@ public class Decoder {
 		return output;
 	}
 
-	public static int[] Hamming74(int[] transferdata) {
+	public static int[] Hamming74(int[] transferdata, Counter count, int[] source) 
+	{
 		int[] output = new int[4*transferdata.length/7];
+		boolean[] errors = new boolean[4*transferdata.length/7];
 		int [] syndrome = new int[3];
-		for(int i = 0; i < transferdata.length; i+=7) { // bierzemy 7 bitów, korygujemy i oddajemy 4
-			for(int j = 0; j < 3; j++) {
-				for (int k = 0; k < 7; k++) {
+		for(int i = 0; i < transferdata.length; i+=7) 
+		{ // bierzemy 7 bitów, korygujemy i oddajemy 4
+			for(int j = 0; j < 3; j++) 
+			{
+				for (int k = 0; k < 7; k++) 
+				{
 					syndrome[j] += HammingH[j][k] * transferdata[i+k];
 				}
 			}
-			for (int j = 0; j < syndrome.length; j++) {
+			for (int j = 0; j < syndrome.length; j++) 
+			{
 				syndrome[j] = syndrome[j]%2;
 			}
 			int bitError = 4 * syndrome[2] + 2 * syndrome[1] + syndrome[0];
-			if(bitError!=0){
+			if(bitError!=0)
+			{
 				transferdata[i + bitError-1]++;
 				transferdata[i + bitError-1] = transferdata[i + bitError-1]%2;
+				errors[4*i/7] = true;
+				errors[4*i/7+1] = true;
+				errors[4*i/7+2] = true;
+				errors[4*i/7+3] = true;
+			}
+			else
+			{
+				errors[4*i/7] = false;
+				errors[4*i/7+1] = false;
+				errors[4*i/7+2] = false;
+				errors[4*i/7+3] = false;
 			}
 			output[4*i/7] = transferdata[i+2];
 			output[4*i/7+1] = transferdata[i+4];
 			output[4*i/7+2] = transferdata[i+5];
 			output[4*i/7+3] = transferdata[i+6];
 		}
-		
+		count.count(source, output, errors);
 		return output;
 	}
 

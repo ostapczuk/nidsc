@@ -39,7 +39,9 @@ public class Nidsc {
     	System.out.print(bit);
     }
     
-    System.out.println("\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych b³êdów: " + count.mistakes + "\nZepsutych: " + count.broken + "\nB³êdy nie wykryte: " + count.notfound);
+    System.out.println("\n\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych b³êdów: " + count.mistakes + "\nZepsutych: " + count.broken + "\nB³êdy nie wykryte: " + count.notfound);
+    
+    count = new Counter(); //reset licznika
     
     System.out.println("\n\nTEST RUN: CRC:"); //////////////////////////////////////////////////////
     System.out.println("\nINPUT DATA:");
@@ -63,12 +65,13 @@ public class Nidsc {
     
     System.out.println("\nOUTPUT DATA:");
     
-    outputdata = Decoder.Hamming74(transferdata);
+    outputdata = Decoder.Hamming74(transferdata, count, inputdata.bits);
     
     for(int bit : outputdata) {
     	System.out.print(bit);
     }    
     
+    System.out.println("\n\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych b³êdów: " + count.mistakes + "\nZepsutych: " + count.broken + "\nB³êdy nie wykryte: " + count.notfound);
     
   }
 }
