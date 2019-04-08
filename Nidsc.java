@@ -43,7 +43,7 @@ public class Nidsc {
     CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound);
     
     count = new Counter(); //reset licznika
-    
+
     System.out.println("\n\nTEST RUN: CRC:"); //////////////////////////////////////////////////////
     System.out.println("\nINPUT DATA:");
     
@@ -66,7 +66,8 @@ public class Nidsc {
     
     System.out.println("\nOUTPUT DATA:");
     
-    outputdata = Decoder.Hamming74(transferdata, count, inputdata.bits);
+
+    outputdata = Decoder.Hamming74(transferdata);
     
     for(int bit : outputdata) {
     	System.out.print(bit);
