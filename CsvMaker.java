@@ -1,12 +1,12 @@
 import java.io.*;
 
-public class CsvMaker
+public class CsvMaker // TODO pożądany format to: all, corrected, uncorrectable
 {
     public static void saveToCsv(int ok, int corrected, int wrong, int uncorrectable, String fileName)
     {
-        try (FileWriter fw = new FileWriter(fileName))
+        try (FileWriter fw = new FileWriter(fileName, true))
         {
-            String data = ok + ";" + corrected + ";" + uncorrectable + ";" + wrong + "\r\n";
+            String data = ok + "," + corrected + "," + uncorrectable + "," + wrong + "\n";
             fw.write(data);
         }
         catch (IOException e)
