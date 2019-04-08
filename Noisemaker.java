@@ -2,7 +2,9 @@ import java.util.Random;
 
 public class Noisemaker 
 {
+
 	static int chance = 50;
+
 	static Random generator = new Random();
 	
 	public static int[] randomErrors(int[] bits)
