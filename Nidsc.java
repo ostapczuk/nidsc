@@ -40,6 +40,7 @@ public class Nidsc {
     }
     
     System.out.println("\n\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych bledow: " + count.mistakes + "\nZepsutych: " + count.broken + "\nBledy nie wykryte: " + count.notfound);
+    CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound);
     
     count = new Counter(); //reset licznika
     
@@ -72,6 +73,7 @@ public class Nidsc {
     }    
     
     System.out.println("\n\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych bledow: " + count.mistakes + "\nZepsutych: " + count.broken + "\nBledy nie wykryte: " + count.notfound);
+    CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound);
     
   }
 }
