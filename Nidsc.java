@@ -67,7 +67,7 @@ public class Nidsc {
     System.out.println("\nOUTPUT DATA:");
     
 
-    outputdata = Decoder.Hamming74(transferdata);
+    outputdata = Decoder.Hamming74(transferdata, count, inputdata.bits);
     
     for(int bit : outputdata) {
     	System.out.print(bit);
