@@ -61,10 +61,14 @@ public class Decoder {
 			{
 				transferdata[i + bitError-1]++;
 				transferdata[i + bitError-1] = transferdata[i + bitError-1]%2;
-				errors[4*i/7] = true;
-				errors[4*i/7+1] = true;
-				errors[4*i/7+2] = true;
-				errors[4*i/7+3] = true;
+				if(syndrome[0] == 0 && syndrome[1] == 1 && syndrome[2] == 1) errors[4*i/7] = true;
+				else errors[4*i/7] = false;
+				if(syndrome[0] == 1 && syndrome[1] == 0 && syndrome[2] == 1) errors[4*i/7+1] = true;
+				else errors[4*i/7+1] = false;
+				if(syndrome[0] == 1 && syndrome[1] == 1 && syndrome[2] == 0) errors[4*i/7+2] = true;
+				else errors[4*i/7+2] = true;
+				if(syndrome[0] == 1 && syndrome[1] == 1 && syndrome[2] == 1) errors[4*i/7+3] = true;
+				else errors[4*i/7+3] = false;
 			}
 			else
 			{
