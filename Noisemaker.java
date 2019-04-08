@@ -3,7 +3,7 @@ import java.util.Random;
 public class Noisemaker 
 {
 
-	static int chance = 50;
+	static int chance = 20;
 
 	static Random generator = new Random();
 	
