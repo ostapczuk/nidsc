@@ -85,5 +85,4 @@ public class Decoder {
 		count.count(source, output, errors);
 		return output;
 	}
-
 }

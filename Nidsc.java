@@ -40,9 +40,10 @@ public class Nidsc {
     }
     
     System.out.println("\n\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych bledow: " + count.mistakes + "\nZepsutych: " + count.broken + "\nBledy nie wykryte: " + count.notfound);
+    CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound);
     
     count = new Counter(); //reset licznika
-    
+
     System.out.println("\n\nTEST RUN: CRC:"); //////////////////////////////////////////////////////
     System.out.println("\nINPUT DATA:");
     
@@ -65,6 +66,7 @@ public class Nidsc {
     
     System.out.println("\nOUTPUT DATA:");
     
+
     outputdata = Decoder.Hamming74(transferdata, count, inputdata.bits);
     
     for(int bit : outputdata) {
@@ -72,6 +74,7 @@ public class Nidsc {
     }    
     
     System.out.println("\n\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych bledow: " + count.mistakes + "\nZepsutych: " + count.broken + "\nBledy nie wykryte: " + count.notfound);
+    CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound);
     
   }
 }
