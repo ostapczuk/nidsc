@@ -1,34 +1,33 @@
-
 public class Counter 
 {
-	public int packets = 0;			//Iloœæ pakietów
+	public int packets = 0;			//Iloï¿½ï¿½ pakietï¿½w
 	
 	public int correct = 0;			//Poprawne
 	public int corrected = 0;		//Poprawione
-	public int mistakes = 0;		//Iloœæ b³êdów (wykrytych)
+	public int mistakes = 0;		//Iloï¿½ï¿½ bï¿½ï¿½dï¿½w (wykrytych)
 	public int broken = 0;			//Zepsute przez program (zle poprawione)
-	public int notfound = 0;		//b³êdy nie wykryte
+	public int notfound = 0;		//bï¿½ï¿½dy nie wykryte
 	
 	//org - oryginalne dane, 
 	//res wynik programu po odkodowaniu, 
-	//mis - tablica informuj¹ca czy w miejscu by³ wykryty b³¹d (w danej trójce czy ile bêdziemy tam zwiêkszaæ to)
-	//Ta funkcja bêdzie wywo³ywana dla ka¿dego pakietu
+	//mis - tablica informujï¿½ca czy w miejscu byï¿½ wykryty bï¿½ï¿½d (w danej trï¿½jce czy ile bï¿½dziemy tam zwiï¿½kszaï¿½ to)
+	//Ta funkcja bï¿½dzie wywoï¿½ywana dla kaï¿½dego pakietu
 	public void count(int[] org, int[] res, boolean[] mis) 
 	{
 		packets++;
-		//true wyst¹pi³ b³¹d, false nie wykryto b³êdu
+		//true wystï¿½piï¿½ bï¿½ï¿½d, false nie wykryto bï¿½ï¿½du
 		for(int i=0; i<mis.length; i++)
 		{
-			if(mis[i]) //je¿eli znaleziono b³ad
+			if(mis[i]) //jeï¿½eli znaleziono bï¿½ad
 			{
 				mistakes++;
-				if(org[i] == res[i]) corrected++; //je¿eli wartoœæ siê zgadza to ok
-				else broken++;						// W przeciwnym wypadku b³¹d niepoprawialny
+				if(org[i] == res[i]) corrected++; //jeï¿½eli wartoï¿½ï¿½ siï¿½ zgadza to ok
+				else broken++;						// W przeciwnym wypadku bï¿½ï¿½d niepoprawialny
 			}
 			else
 			{
-				if(org[i] == res[i]) correct++;   //je¿eli nie ma b³edu i wartoœæ siê zgadza to by³o dajziobu
-				else notfound++;					//je¿eli nie to tak siê zepsu³o ¿e b³¹d nie zosta³ wykryty
+				if(org[i] == res[i]) correct++;   //jeï¿½eli nie ma bï¿½edu i wartoï¿½ï¿½ siï¿½ zgadza to byï¿½o dajziobu
+				else notfound++;					//jeï¿½eli nie to tak siï¿½ zepsuï¿½o ï¿½e bï¿½ï¿½d nie zostaï¿½ wykryty
 			}
 		}
 	}
