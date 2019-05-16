@@ -87,7 +87,18 @@ public class Nidsc {
     	//System.out.println("\n\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych bledow: " + count.mistakes + "\nZepsutych: " + count.broken + "\nBledy nie wykryte: " + count.notfound);
     	CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound, "Hamming.csv");
     }
-    System.out.println("Done.");
+    
+    System.out.println("\nOUTPUT DATA:");
+    
+
+    outputdata = Decoder.Hamming74(transferdata, count, inputdata.bits);
+    
+    for(int bit : outputdata) {
+    	System.out.print(bit);
+    }    
+    
+    System.out.println("\n\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych bledow: " + count.mistakes + "\nZepsutych: " + count.broken + "\nBledy nie wykryte: " + count.notfound);
+    CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound);
     
   }
 }
