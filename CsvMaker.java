@@ -29,4 +29,17 @@ public class CsvMaker // TODO pożądany format to: all, corrected, uncorrectabl
     {
         saveToCsv(ok, corrected, wrong, 0, "results.csv");
     }
+    
+    public static void columnnames(String filename)
+    {
+        try (FileWriter fw = new FileWriter(filename, true))
+        {
+            String data = "Poprawnych,Poprawionych,Zepsutych,Niewykryte\n";
+            fw.write(data);
+        }
+        catch (IOException e)
+        {
+            System.out.println(e);
+        }
+    }
 }
