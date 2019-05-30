@@ -66,7 +66,7 @@ public class Decoder {
 				if(syndrome[0] == 1 && syndrome[1] == 0 && syndrome[2] == 1) errors[4*i/7+1] = true;
 				else errors[4*i/7+1] = false;
 				if(syndrome[0] == 1 && syndrome[1] == 1 && syndrome[2] == 0) errors[4*i/7+2] = true;
-				else errors[4*i/7+2] = true;
+				else errors[4*i/7+2] = false;
 				if(syndrome[0] == 1 && syndrome[1] == 1 && syndrome[2] == 1) errors[4*i/7+3] = true;
 				else errors[4*i/7+3] = false;
 			}
