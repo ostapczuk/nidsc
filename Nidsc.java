@@ -1,7 +1,7 @@
 public class Nidsc {
 	
 	static int repLength = 3; 
-	static int packetLength = 10;
+	static int packetLength = 21;
 	static int loop = 1000;
 	static Counter count;
 	
@@ -20,7 +20,7 @@ public class Nidsc {
     for(int i = 0; i < loop; i++)
     {
     	System.out.println(i);
-    	inputdata = new Data(1000); // liczba podzielna przez 4 - do kodu Hamminga(7,4)
+    	inputdata = new Data(1024); // liczba podzielna przez 4 - do kodu Hamminga(7,4)
     	count = new Counter();
     	//System.out.println("\nINPUT DATA:");
     
