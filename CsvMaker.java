@@ -32,6 +32,14 @@ public class CsvMaker // TODO pożądany format to: all, corrected, uncorrectabl
     
     public static void columnnames(String filename)
     {
+    	try (PrintWriter writer = new PrintWriter(filename))
+    	{
+	    	writer.print("");
+    	}
+    	catch (IOException e)
+    	{
+    		System.out.println(e);
+    	}
         try (FileWriter fw = new FileWriter(filename, true))
         {
             String data = "Poprawnych,Poprawionych,Zepsutych,Niewykryte\n";
