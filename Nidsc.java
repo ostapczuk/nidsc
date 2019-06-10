@@ -1,7 +1,5 @@
 public class Nidsc {
 	
-	static int repLength = 3; 
-	static int packetLength = 21;
 	static int loop = 1000;
 	static Counter count;
 	
@@ -23,71 +21,51 @@ public class Nidsc {
     {
     	System.out.println(i);
     	inputdata = new Data(1144); // liczba podzielna przez 4, 11 i 26 - do kodow Hamminga(7,4), (15,11) i (31,26)
+    	
+    	
     	count = new Counter();
-    	//System.out.println("\nINPUT DATA:");
-    
-    	/*for(int bit : inputdata.bits) {
-    		System.out.print(bit);
-    	}*/
-    
-    	//System.out.println("\nTRANSFER DATA:");
-    	transferdata = Encoder.repetition(inputdata.bits, repLength);
-    	/*for(int bit : transferdata) {
-    		System.out.print(bit);
-    	}*/
+
+    	transferdata = Encoder.repetition(inputdata.bits, 3);
     
     	transferdata = Noisemaker.randomErrors(transferdata);
+    	
+    	outputdata = Decoder.repetition(transferdata, 3, count, inputdata.bits);
+    
+    	CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound, "repetition3.csv");
+    
+    	
+    	count = new Counter();
 
-    	/*System.out.println("\nCORRUPTED DATA:");
-    	for(int bit : transferdata) {
-    		System.out.print(bit);
-    	}*/
+    	transferdata = Encoder.repetition(inputdata.bits, 5);
     
-    	//System.out.println("\nOUTPUT DATA:");
+    	transferdata = Noisemaker.randomErrors(transferdata);
+    	
+    	outputdata = Decoder.repetition(transferdata, 5, count, inputdata.bits);
     
-    	outputdata = Decoder.repetition(transferdata,repLength, count, inputdata.bits);
+    	CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound, "repetition5.csv");
+    	
+    	
+    	count = new Counter();
+
+    	transferdata = Encoder.repetition(inputdata.bits, 7);
     
-    	/*for(int bit : outputdata) {
-    		System.out.print(bit);
-    	}*/
+    	transferdata = Noisemaker.randomErrors(transferdata);
+    	
+    	outputdata = Decoder.repetition(transferdata, 7, count, inputdata.bits);
     
-    	//System.out.println("\n\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych bledow: " + count.mistakes + "\nZepsutych: " + count.broken + "\nBledy nie wykryte: " + count.notfound);
-    	CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound, "repetition.csv");
+    	CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound, "repetition7.csv");
     
     
     	count = new Counter(); //reset licznika
 
-    	/*System.out.println("\n\nTEST RUN: CRC:"); //////////////////////////////////////////////////////
-    	System.out.println("\nINPUT DATA:");
-    
-    	for(int bit : inputdata.bits) {
-    		System.out.print(bit);
-    	}*/
-    
-    	//System.out.println("\nTRANSFER DATA:");
     	transferdata = Encoder.Hamming_7_4(inputdata.bits);
-    	/*for(int bit : transferdata) {
-    		System.out.print(bit);
-    	}*/
-    
+    	
     	transferdata = Noisemaker.randomErrors(transferdata);
 
-    	/*System.out.println("\nCORRUPTED DATA:");
-    	for(int bit : transferdata) {
-    		System.out.print(bit);
-    	}*/
-    
-    	// System.out.println("\nOUTPUT DATA:");
-    
-    
     	outputdata = Decoder.Hamming_7_4(transferdata, count, inputdata.bits);
     	
-    	/*for(int bit : outputdata) {
-    		System.out.print(bit);
-    	}*/    
-    	
-    	//System.out.println("\n\nPoprawnych: " + count.correct + "\nPoprawionych: " + count.corrected + "\nWykrytych bledow: " + count.mistakes + "\nZepsutych: " + count.broken + "\nBledy nie wykryte: " + count.notfound);
     	CsvMaker.saveToCsv(count.correct, count.corrected, count.broken, count.notfound, "Hamming_7_4.csv");
+    	
     	
     	count = new Counter(); //reset licznika
     	
